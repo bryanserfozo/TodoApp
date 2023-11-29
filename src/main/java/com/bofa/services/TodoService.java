@@ -37,7 +37,7 @@ public class TodoService {
     public List<Todo> getAllTodosByOwner(String username){
         Optional<User> user = userRepo.findUserByUsername(username);
         if (user.isPresent()){
-            return todoRepo.getAllTodoByOwner(user.get());
+            return todoRepo.getAllTodoByOwnerOrderById(user.get());
         }
         return new ArrayList<>();
     }
