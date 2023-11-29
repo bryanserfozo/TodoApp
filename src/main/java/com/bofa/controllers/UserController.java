@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(allowCredentials = "true")
 public class UserController {
 
     private final UserService userServ;
