@@ -1,11 +1,11 @@
 async function fetchAndPopulateTodoList() {
-    const usernameCookie = getCookie("username");
+    // const usernameCookie = getCookie("username");
 
-    if (!usernameCookie) {
-        // Handle the case where the username cookie is not set
-        console.error("Username cookie is missing.");
-        return;
-    }
+    // if (!usernameCookie) {
+    //     // Handle the case where the username cookie is not set
+    //     console.error("Username cookie is missing.");
+    //     return;
+    // }
 
     try {
         // Fetch to-do items for the logged-in user
@@ -13,7 +13,7 @@ async function fetchAndPopulateTodoList() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Cookie": `username=${usernameCookie}`
+                "Cookie": `username=${localStorage.getItem("username")}`
             },
             credentials:"include"
         });
@@ -64,7 +64,7 @@ async function handleCheckboxChange(checkbox) {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Cookie": `username=${getCookie("username")}`
+                "Cookie": `username=${localStorage.getItem("username")}`
             },
             credentials:"include",
             body: JSON.stringify({ complete: checkbox.checked })
@@ -95,15 +95,15 @@ function getCookie(name) {
 
 // Show to-do page and fetch/populate the list when the user is logged in
 function showTodoPage() {
-    if (getCookie("username")){
+    if (localStorage.getItem("username")){
         document.getElementById("todo-page").style.display = "block";
         document.getElementById("newTodoForm").style.display = "block";
         fetchAndPopulateTodoList();
     } else{
         console.log("false")
         console.log(document.cookie);
-        console.log(getCookie("username"))
-        console.log(getCookieWithExpiry("username"))
+        console.log(localStorage.getItem("username"))
+
     }
     
 }
@@ -145,6 +145,7 @@ async function attemptLogin() {
             // Handle the response from the server
             console.log(responseData); // Log the response, adjust as needed
             // You can add logic here to redirect the user or perform other actions based on the response
+            localStorage.setItem("username", responseData.username)
             location.reload()
             
         } else {
@@ -190,6 +191,7 @@ async function attemptRegistration() {
             // Handle the response from the server
             console.log(responseData); // Log the response, adjust as needed
             // You can add logic here to redirect the user or perform other actions based on the response
+            localStorage.setItem("username", responseData.username)
             location.reload()
             
         } else {
@@ -216,7 +218,7 @@ async function addNewTodo() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Cookie": `username=${getCookie("username")}`
+                "Cookie": `username=${localStorage.getItem("username")}`
             },
             credentials:"include",
             body: JSON.stringify({ description: description, complete: false })
