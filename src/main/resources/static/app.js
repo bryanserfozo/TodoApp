@@ -1,3 +1,5 @@
+const base_url = "ec2-18-212-86-3.compute-1.amazonaws.com"
+
 async function fetchAndPopulateTodoList() {
     const usernameCookie = getCookie("username");
 
@@ -9,7 +11,7 @@ async function fetchAndPopulateTodoList() {
 
     try {
         // Fetch to-do items for the logged-in user
-        const response = await fetch("http://localhost:8080/todo", {
+        const response = await fetch(`{base_url}:8080/todo`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -59,7 +61,7 @@ async function handleCheckboxChange(checkbox) {
 
     try {
         // Send fetch request to update task completion status
-        const response = await fetch(`http://localhost:8080/todo/${taskId}`, {
+        const response = await fetch(`${base_url}/todo/${taskId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -129,7 +131,7 @@ async function attemptLogin() {
 
     try {
         // Send fetch request to http://localhost:8080/user/login
-        const response = await fetch("http://localhost:8080/user/login", {
+        const response = await fetch(`${base_url}:8080/user/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -174,7 +176,7 @@ async function attemptRegistration() {
 
     try {
         // Send fetch request to http://localhost:8080/user/register
-        const response = await fetch("http://localhost:8080/user/register", {
+        const response = await fetch(`${base_url}:8080/user/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -210,7 +212,7 @@ async function addNewTodo() {
 
     try {
         // Send fetch request to add a new to-do
-        const response = await fetch("http://localhost:8080/todo", {
+        const response = await fetch(`${base_url}:8080/todo`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
