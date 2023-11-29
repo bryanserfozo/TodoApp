@@ -23,7 +23,7 @@ public class TodoController {
 
     @PostMapping
     public ResponseEntity<Todo> createTodo(@RequestBody Todo todo,
-                                           @CookieValue(name = "username", defaultValue = "no-username-provided") String username){
+                                           @RequestParam(name = "username", defaultValue = "no-username-provided") String username){
 
         if (username.equals("no-username-provided")){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -37,7 +37,7 @@ public class TodoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Todo>> getAllTodosByOwner(@CookieValue(name = "username", defaultValue = "no-username-provided") String username){
+    public ResponseEntity<List<Todo>> getAllTodosByOwner(@RequestParam(name = "username", defaultValue = "no-username-provided") String username){
         if (username.equals("no-username-provided")){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -48,7 +48,7 @@ public class TodoController {
     @PutMapping("{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable int id,
                                             @RequestBody Todo todo,
-                                           @CookieValue(name = "username", defaultValue = "no-username-provided") String username){
+                                           @RequestParam(name = "username", defaultValue = "no-username-provided") String username){
 
         if (username.equals("no-username-provided")){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

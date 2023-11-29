@@ -9,7 +9,7 @@ async function fetchAndPopulateTodoList() {
 
     try {
         // Fetch to-do items for the logged-in user
-        const response = await fetch("http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/todo", {
+        const response = await fetch(`http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/todo?username=${localStorage.getItem("username")}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -60,7 +60,7 @@ async function handleCheckboxChange(checkbox) {
 
     try {
         // Send fetch request to update task completion status
-        const response = await fetch(`http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/todo/${taskId}`, {
+        const response = await fetch(`http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/todo/${taskId}?username=${localStorage.getItem("username")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -214,7 +214,7 @@ async function addNewTodo() {
 
     try {
         // Send fetch request to add a new to-do
-        const response = await fetch("http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/todo", {
+        const response = await fetch(`http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/todo?username=${localStorage.getItem("username")}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
