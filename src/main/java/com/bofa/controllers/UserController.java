@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(allowCredentials = "true")
 public class UserController {
 
     private final UserService userServ;
@@ -30,6 +31,8 @@ public class UserController {
         if (returnedUser != null){
             ResponseCookie usernameCookie = ResponseCookie.from("username", returnedUser.getUsername())
                     .secure(true)
+                    .httpOnly(true)
+                    .sameSite("None")
                     .path("/")
                     .maxAge(600)
                     .build();
@@ -48,6 +51,8 @@ public class UserController {
         if (returnedUser != null){
             ResponseCookie usernameCookie = ResponseCookie.from("username", returnedUser.getUsername())
                     .secure(true)
+                    .httpOnly(true)
+                    .sameSite("None")
                     .path("/")
                     .maxAge(600)
                     .build();

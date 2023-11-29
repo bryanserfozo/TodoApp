@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todo")
+@CrossOrigin(allowCredentials = "true")
 public class TodoController {
 
     private final TodoService todoService;
