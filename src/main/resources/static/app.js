@@ -1,4 +1,4 @@
-const base_url = "ec2-18-212-86-3.compute-1.amazonaws.com"
+const base_url = "http://ec2-18-212-86-3.compute-1.amazonaws.com"
 
 async function fetchAndPopulateTodoList() {
     const usernameCookie = getCookie("username");
