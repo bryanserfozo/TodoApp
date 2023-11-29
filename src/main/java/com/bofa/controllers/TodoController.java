@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todo")
+@CrossOrigin(origins = {"http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/"})
 public class TodoController {
 
     private final TodoService todoService;

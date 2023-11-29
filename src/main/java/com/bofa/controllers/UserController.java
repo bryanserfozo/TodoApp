@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = {"http://ec2-18-212-86-3.compute-1.amazonaws.com:8080/"})
 public class UserController {
 
     private final UserService userServ;
