@@ -14,7 +14,8 @@ async function fetchAndPopulateTodoList() {
             headers: {
                 "Content-Type": "application/json",
                 "Cookie": `username=${usernameCookie}`
-            }
+            },
+            credentials:"include"
         });
 
         if (response.ok) {
@@ -65,6 +66,7 @@ async function handleCheckboxChange(checkbox) {
                 "Content-Type": "application/json",
                 "Cookie": `username=${getCookie("username")}`
             },
+            credentials:"include",
             body: JSON.stringify({ complete: checkbox.checked })
         });
 
@@ -216,6 +218,7 @@ async function addNewTodo() {
                 "Content-Type": "application/json",
                 "Cookie": `username=${getCookie("username")}`
             },
+            credentials:"include",
             body: JSON.stringify({ description: description, complete: false })
         });
 
