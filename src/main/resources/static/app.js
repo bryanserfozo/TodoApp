@@ -15,7 +15,7 @@ async function fetchAndPopulateTodoList() {
                 "Content-Type": "application/json",
                 "Cookie": `username=${localStorage.getItem("username")}`
             },
-            credentials:"include"
+            credentials:"same-origin"
         });
 
         if (response.ok) {
@@ -66,7 +66,7 @@ async function handleCheckboxChange(checkbox) {
                 "Content-Type": "application/json",
                 "Cookie": `username=${localStorage.getItem("username")}`
             },
-            credentials:"include",
+            credentials:"same-origin",
             body: JSON.stringify({ complete: checkbox.checked })
         });
 
@@ -220,7 +220,7 @@ async function addNewTodo() {
                 "Content-Type": "application/json",
                 "Cookie": `username=${localStorage.getItem("username")}`
             },
-            credentials:"include",
+            credentials:"same-origin",
             body: JSON.stringify({ description: description, complete: false })
         });
 
